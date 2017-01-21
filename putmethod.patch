@@ -1,0 +1,12 @@
+diff -rupN ModSecurity-master/nginx/modsecurity/ngx_http_modsecurity.c ModSecurity-master-fix/nginx/modsecurity/ngx_http_modsecurity.c
+--- ModSecurity-master/nginx/modsecurity/ngx_http_modsecurity.c	2016-12-01 10:14:38.000000000 -0700
++++ ModSecurity-master-fix/nginx/modsecurity/ngx_http_modsecurity.c	2017-01-21 11:30:58.000000000 -0700
+@@ -1008,7 +1008,7 @@ ngx_http_modsecurity_handler(ngx_http_re
+         return NGX_DECLINED;
+     }
+ 
+-    if (r->method == NGX_HTTP_POST 
++    if (r->method == NGX_HTTP_POST || r->method == NGX_HTTP_PUT || r->method ==NGX_HTTP_PATCH 
+             && modsecIsRequestBodyAccessEnabled(ctx->req) ) {
+ 
+         /* read POST request body, should we process PUT? */
